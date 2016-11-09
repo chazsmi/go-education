@@ -1,0 +1,6 @@
+go run hello.go
+gofmt -w hello.go
+go get github.com/chazsmi/stock-service
+go get golang.org/x/tools/cmd/goimports
+goimports -w hello.go
+undefined: time in time.Now

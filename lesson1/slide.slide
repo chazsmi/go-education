@@ -1,0 +1,157 @@
+Introduction to Go
+Lesson 1
+Tags: go golang 
+
+Charlie Smith
+
+* Who is this guy?
+- Development Lead on Smart Lists & Search
+- Been working with Go for 2-3 years
+- Still a student of the language
+
+* How this course works
+- 1-2 topics per week
+- Excerises after each topic
+- Idea is to give you enough information to get going in Go and then move on to more advanced topics
+- Once the basics are covered we will be looking at a package in the standard libary each week.
+- The course is interactive and you will have time to complete each section. Please be patient with other devs who may not be as quick as you.
+- Instuctions are based on a OSX/Linix envoriments
+- I will be giving you links other relavent materals at specfic points during the course
+
+* What is Go?
+- Developed by Robert Griesemer, Rob Pike, and Ken Thompson at Google 2007, annouced in 2009
+- Garbage collection, memory safety and concurrent features built in
+- Designed to bridge the gap between the speed of C++ and the speed in which Python code can be written.
+- Go puts a big ephansis on simplcity. Therefore avoids overdesign and the rigid hierarchy of inheritance-based Object orientation
+
+* Recommended links about the origjns and goals of Go
+- The Go programming Language - Rob Pike https://www.youtube.com/watch?v=rKnDgT73v8s
+- Simplicty is complicated - Rob Pike https://www.youtube.com/watch?v=rFejpH_tAHM
+- 5 things I love about Go - Andrew Gerrand https://www.youtube.com/watch?v=fsTOOPB1TBY
+
+* First lesson - what we are covering today
+- By the end of this session you will be able to write a production grade webserver in Go
+- Setting up your enviroment
+- Learn about Go's syntax
+- Testing
+- Build a webserver
+
+* Setting up you're Environment
+
+* Installing Go
+- Head over to https://golang.org/dl/
+- Install download the installer for your OS or you can do it with curl
+- If you using curl you will need place the the source code /usr/local/go on Linux, if you're using windows, don't.
+- Fire up a new terminal window and run go version and you should see Go output its version and distro to the terminal
+
+* Go paths
+- Go's project layout
+.code directory.go
+
+* GOPATH
+- This specifys the location of your Go enviroment
+- The normal GOPATH is $HOME/go. In Go 1.8 GOPATH will default to this.
+- On my mac machine this would be /Users/charlie.smith1/go/src/github.com/user/hello/
+
+* Set up you're GOPATH
+1. mkdir $HOME/go
+2. Add this line to you're .profile file
+.code .profile
+3. Run source ~/.profile
+4. Running echo $GOPATH from your terminal should now output your GOPATH
+
+* Setting GOBIN
+- The bin directory is where your installed programs binarys live
+- The standard path for this $GOPATH/bin
+- So set it up in your .profile
+.code .profilebin
+- Again remember to run source ~/.profile and then echo $GOBIN to check if it is set correctly
+
+* Go playground
+- .link https://play.golang.org/
+- You can write quick examples and share these examples with other people
+- Easy to try things out
+
+* Lets write some Go
+
+* You're first Go Program!
+.play hello.go
+- We can then build and run this program with 
+.code run /^go run hello.go/
+- You should see the output Hello world! on your terminal
+
+* Go's basic tooling
+
+* The build and run tools
+- Go comes with excellent tooling and these are just two.
+- Go run builds and then runs a binary for your program and is basically a convenience tool. Those used to dynamically typed languages will probably identify with this.
+- go build - builds a binary in my current directory but doesn't run the binary. So the workflow would be slightly different
+.code buildandrun /^go build/,/^hello/
+- go install - builds a binary and places it in my GOBIN directory I can then run just run my program like this
+.code buildandrun /^go install/,/hello/
+
+* Gofmt 
+- Great tool that formats your code to pescribed standard set by the lanauage. Avoids long debates about standards!
+- Consider this code
+.code messy.go
+- If we run the below it will format the code automactically for us.
+.code run /^gofmt -w hello.go/
+.code neat.go
+
+* Go get
+- Go get is used to pull in remote packages from source control e.g.
+.code run /^go get/
+- This will download the source code into your local enviroment
+
+* Goimports
+- Another great tool that increases your speed in wrting go code. The tool automacically adds the packages used in your proram and places the path into your import statement
+- Install it with:
+.code run /^go get golang.org/
+- To run the tool:
+.code run /^goimports/
+
+* Goimports example
+- Consider the following code
+.code beforeimported.go
+- As you can see the time package is not imported. So if we ran this code we would get an error: undefined: time in time.Now
+.code run /^undefined/
+
+* Goimports example continued...
+- So we run the tool
+.code run /^goimports/
+- The code after
+.code afterimported.go
+- Try it yourself
+
+* Add gofmt and goimports to your IDE
+- I would recommend running goimports and gofmt on save in your ide.
+- All the major IDEs offer plugins to allow you to do this.
+- I use vim and vim's is vim-go
+- Have a quick search now and add your ide's plugin.
+
+* Go's syntax
+
+* Functions
+- Functions in Go can zero more arguments and they can also return zero or more items
+.play functions.go
+- In the above example the function add takes two ints and returns 1 int
+- Take note that we need to declair the return type after the function name
+
+* Functions continued..
+- We can also shorten the type declarations, here's an example with the add functions arguments.
+.code functions2.go
+
+* Functions with multiple return types
+- Functions can also have multiple return types consider the following example
+.play functions3.go
+- Notice how we instantiate the two variables here
+
+* Functions with named return types
+- You can name your return types on your function declarations
+- Consider the following code
+.play functions4.go
+- The return at the end of the split function is whats called a "naked" return
+- I would be careful with using this. As it can make complex code harder to read. If you want to use it keep it for very simple functions.
+
+* Variables
+- Variables can initialized in several ways
