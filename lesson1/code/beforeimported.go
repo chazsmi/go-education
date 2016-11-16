@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	fmt.Println("vim-go")
+	fmt.Println("The time is:")
 	fmt.Println(time.Now())
 }

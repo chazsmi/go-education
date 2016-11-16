@@ -21,7 +21,7 @@ Charlie Smith
 * What is Go?
 - Developed by Robert Griesemer, Rob Pike, and Ken Thompson at Google 2007, annouced in 2009
 - Garbage collection, memory safety and concurrent features built in
-- Designed to bridge the gap between the speed of C++ and the speed in which Python.code code/can be written.
+- Designed to bridge the gap between the speed of C++ and the speed in which Python code can be written.
 - Go puts a big ephansis on simplcity. Therefore avoids overdesign and the rigid hierarchy of inheritance-based Object orientation
 
 * Recommended links about the origjns and goals of Go
@@ -42,7 +42,7 @@ Charlie Smith
 - If you want to use docker you wont have to follow these steps or indeed the path settings. But I would still recommend following these steps so you understand how to do it.
 - Head over to https://golang.org/dl/
 - Install download the installer for your OS or you can do it with curl
-- If you using curl you will need place the the source.code code//usr/local/go on Linux, if you're using windows, don't.
+- If you using curl you will need place the the source code /usr/local/go on Linux, if you're using windows, don't.
 - Fire up a new terminal window and run go version and you should see Go output its version and distro to the terminal
 
 * Go paths
@@ -75,10 +75,25 @@ Charlie Smith
 
 * Lets write some Go
 
+* Creating a repo for this course
+- Throughout the course we will be doing excerises that you will need a repo for 
+- So please create a repo (can be public) on you're own username called goexercises
+- Eg github.com/yourusername/goexercises
+- We will be using this throughout the course
+
+* Go get
+- Go get is used to pull in remote packages from source control
+- This will download the source code into your local enviroment
+- Use this command to download your own empty repo you have just created.
+.code run /^go get/
+- You should now have a folder structure created for you that looks like this: ~/go/src/github.com/yourusername/goexcerises/
+
 * You're first Go Program!
+- Create a new file called main.go in the folder we created on the previus slide
+- Add the following code
 .play code/hello.go
 - We can then build and run this program with 
-.code run /^go run hello.go/
+.code run /^go run main.go/
 - You should see the output Hello world! on your terminal
 
 * Go's basic tooling
@@ -92,17 +107,12 @@ Charlie Smith
 .code buildandrun /^go install/,/hello/
 
 * Gofmt 
-- Great tool that formats your.code code/to a pescribed standard set by the lanauage. Avoids long debates about standards!
+- Great tool that formats your code to a pescribed standard set by the lanauage. Avoids long debates about standards!
 - Consider this code
 .code code/messy.go
-- If we run the below it will format the.code code/automactically for us.
-.code run /^gofmt -w hello.go/
+- If we run the below it will format the code automactically for us.
+.code run /^gofmt -w main.go/
 .code code/neat.go
-
-* Go get
-- Go get is used to pull in remote packages from source control e.g.
-.code run /^go get/
-- This will download the source code into your local enviroment
 
 * Goimports
 - Another great tool that increases your speed in wrting go code. The tool automacically adds the packages used in your proram and places the path into your import statement
@@ -114,13 +124,13 @@ Charlie Smith
 * Goimports example
 - Consider the following code
 .code code/beforeimported.go
-- As you can see the time package is not imported. So if we ran this.code code/we would get an error: undefined: time in time.Now
+- As you can see the time package is not imported. So if we ran this code we would get an error: undefined: time in time.Now
 .code run /^undefined/
 
 * Goimports example continued...
 - So we run the tool
 .code run /^goimports/
-- The.code code/after
+- The code after
 .code code/afterimported.go
 - Try it yourself
 
@@ -135,9 +145,19 @@ Charlie Smith
 - Atom: https://github.com/joefitzgerald/go-plus
 - Emacs: https://github.com/dominikh/go-mode.el
 - Visual Studio Code: https://github.com/Microsoft/vscode-go
-- If your editor isnt listed please go here to find it https://github.com/Microsoft/vscode-go
+- If your editor isnt listed please go here to find it https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins
 
 * Go's syntax
+
+* Variables
+- Variables can initialized in several ways
+.play code/variables.go
+
+* Variables continued..
+- Variables that are not assigned when declaired default to these zero values
+- 0 for numeric types
+- false for boolean type
+- "" for empty strings
 
 * Functions
 - Functions in Go can zero more arguments and they can also return zero or more items
@@ -161,15 +181,13 @@ Charlie Smith
 - The return at the end of the split function is whats called a "naked" return
 - I would be careful with using this. As it can make complex code harder to read. If you want to use it keep it for very simple functions.
 
-* Variables
-- Variables can initialized in several ways
-.play code/variables.go
-
-* Variables continued..
-- Variables that are not assigned when declaired default to these zero values
-- 0 for numeric types
-- false for boolean type
-- "" for empty strings
+* TASK 
+- You need to create 3 functions
+- One function takes a int as a param and multiples it by its self.
+- One function that returns a string with an int
+- One function that has a named return type (your choice of type) with a "naked" return
+- You need to create a main function that will call all 3 functions and print the result of each one
+- Your program must complile and run successfully
 
 * Types 
 - Go is a strongly typed langauge. It cares a lot about type
@@ -212,10 +230,32 @@ Charlie Smith
 - Switch cases evaluate in order top to bottom, stopping when a case succeeds
 .play code/switch.go /{/,/// end/
 
-* Switch wihtout a condition..
+* Switch without a condition..
 .code code/switch.go /// end/,/^}/
 
 * Defer
 - Defer defers the execuation of a function till the surronding function returns
 - The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns
 .play code/defer.go
+
+* Storing data
+
+* Slices
+- Slices are like views on the underlying arrays
+.play code/slices.go /START OMIT/,/END OMIT/
+
+* Slices continued...
+- You can also have slices within slices see below
+.play code/slices2.go /START OMIT/,/END OMIT/
+
+* Slices continued...
+- To append elements to a slice you can use the standard libaries append function
+.play code/slices3.go
+
+* Maps
+- Maps are like mulitdimensional arrays in other languages. Great for key value pairs.
+.play code/maps.go /START OMIT/,/END OMIT/
+
+* TASK
+- Use the go get command to get the excerise repo github.com/chazsmi/mapsexcerise
+- Have a Go!

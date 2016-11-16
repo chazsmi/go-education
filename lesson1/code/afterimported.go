@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println("vim-go")
+	fmt.Println("The time is:")
 	fmt.Println(time.Now())
 }
