@@ -24,10 +24,10 @@ Charlie Smith
 - Designed to bridge the gap between the speed of C++ and the speed in which Python code can be written.
 - Go puts a big ephansis on simplcity. Therefore avoids overdesign and the rigid hierarchy of inheritance-based Object orientation
 
-* Recommended links about the origjns and goals of Go
-- The Go programming Language - Rob Pike https://www.youtube.com/watch?v=rKnDgT73v8s
-- Simplicty is complicated - Rob Pike https://www.youtube.com/watch?v=rFejpH_tAHM
-- 5 things I love about Go - Andrew Gerrand https://www.youtube.com/watch?v=fsTOOPB1TBY
+* Recommended links about the origins and goals of Go
+- The Go programming Language - Rob Pike [[https://www.youtube.com/watch?v=rKnDgT73v8s]]
+- Simplicty is complicated - Rob Pike [[https://www.youtube.com/watch?v=rFejpH_tAHM]]
+- 5 things I love about Go - Andrew Gerrand [[https://www.youtube.com/watch?v=fsTOOPB1TBY]]
 
 * First lesson - what we're covering today
 - By the end of this session you will be able to write a production grade webserver in Go
@@ -40,7 +40,7 @@ Charlie Smith
 
 * Installing Go
 - If you want to use docker you wont have to follow these steps or indeed the path settings. But I would still recommend following these steps so you understand how to do it.
-- Head over to https://golang.org/dl/
+- Head over to [[https://golang.org/dl/]]
 - Install download the installer for your OS or you can do it with curl
 - If you using curl you will need place the the source code /usr/local/go on Linux, if you're using windows, don't.
 - Fire up a new terminal window and run go version and you should see Go output its version and distro to the terminal
@@ -69,9 +69,13 @@ Charlie Smith
 - Again remember to run source ~/.profile and then echo $GOBIN to check if it is set correctly
 
 * Go playground
-- .link https://play.golang.org/
+- You can find it [[https://play.golang.org/][here]]
 - You can write quick examples and share these examples with other people
 - Easy to try things out
+
+* Go documentation
+- Docs for standard libary packages [[https://golang.org/pkg/]]
+- Useful go FAQ's [[https://golang.org/doc/faq]]
 
 * Lets write some Go
 
@@ -140,12 +144,12 @@ Charlie Smith
 - I use vim and vim's is vim-go
 
 * Major IDE go plugins
-- Vim: https://github.com/fatih/vim-go
-- Sublime: https://github.com/DisposaBoy/GoSublime
-- Atom: https://github.com/joefitzgerald/go-plus
-- Emacs: https://github.com/dominikh/go-mode.el
-- Visual Studio Code: https://github.com/Microsoft/vscode-go
-- If your editor isnt listed please go here to find it https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins
+- Vim: [[https://github.com/fatih/vim-go]]
+- Sublime: [[https://github.com/DisposaBoy/GoSublime]]
+- Atom: [[https://github.com/joefitzgerald/go-plus]]
+- Emacs: [[https://github.com/dominikh/go-mode.el]]
+- Visual Studio Code: [[https://github.com/Microsoft/vscode-go]]
+- If your editor isnt listed please go here to find it [[https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins]]
 
 * Go's syntax
 
@@ -259,3 +263,12 @@ Charlie Smith
 * TASK
 - Use the go get command to get the excerise repo github.com/chazsmi/mapsexcerise
 - Have a Go!
+
+* Flags
+- You can pass flags into your programs using the Flags package 
+- You can find the docs for the flags package here [[https://golang.org/pkg/flag/]]
+.code code/flags.go /START OMIT/,/END OMIT/
+
+* TASK
+- Please go get github.com/chazsmi/webservicetask
+- We are going to go 
