@@ -7,3 +7,4 @@ See also [https://chazsmi.github.io/go-education/](https://chazsmi.github.io/go-
 ## Excerises
 - Lesson 1
     - [https://github.com/chazsmi/mapsexcerise](https://github.com/chazsmi/mapsexcerise)
+    - [https://github.com/chazsmi/webservicetask](https://github.com/chazsmi/webservicetask)

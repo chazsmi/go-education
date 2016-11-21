@@ -1,6 +1,5 @@
 Introduction to Go
 Lesson 1
-Tags: go golang 
 
 Charlie Smith
 
@@ -30,11 +29,15 @@ Charlie Smith
 - 5 things I love about Go - Andrew Gerrand [[https://www.youtube.com/watch?v=fsTOOPB1TBY]]
 
 * First lesson - what we're covering today
-- By the end of this session you will be able to write a production grade webserver in Go
+- By the end of this session you will be writing a small web service in Go
 - Setting up your enviroment
+- Go's basic tooling
 - Learn about Go's syntax
-- Testing
-- Build a webserver
+- Control structures
+- Storing data
+- TASK - Maps excerise
+- Flags package 
+- TASK - build a service
 
 * Setting up you're Environment
 
@@ -271,4 +274,17 @@ Charlie Smith
 
 * TASK
 - Please go get github.com/chazsmi/webservicetask
-- We are going to go 
+- We are going to walk through the first task together
+- The rest of the tasks are to do in between this week and next week
+
+* Making the response json
+- First we are going add a struct and with tags to encode/decode our json
+- These tags will name the attributes in the json for you
+.code code/webservicetask.go /START OMIT/,/END OMIT/
+
+* Example of json tags
+.play -edit code/examplejsontags.go
+
+* Back to our service
+.code code/webservicetask2.go /START OMIT/,/END OMIT/
+
