@@ -10,33 +10,33 @@ Charlie Smith
 
 * How this course works
 - 1-2 topics per week
-- Excerises after each topic
+- Exercises after each topic
 - Idea is to give you enough information to get going in Go and then move on to more advanced topics
 - Once the basics are covered we will be looking at a package in the standard libary each week.
 - The course is interactive and you will have time to complete each section. Please be patient with other devs who may not be as quick as you.
-- Instuctions are based on a OSX/Linux envoriments
-- I will be giving you links other relavent materals at specfic points during the course
+- Instructions are based on a OSX/Linux environments
+- I will be giving you links other relevant materials at specific points during the course
 
 * What is Go?
 - Developed by Robert Griesemer, Rob Pike, and Ken Thompson at Google 2007, annouced in 2009
 - Garbage collection, memory safety and concurrent features built in
 - Designed to bridge the gap between the speed of C++ and the speed in which Python code can be written.
-- Go puts a big ephansis on simplcity. Therefore avoids overdesign and the rigid hierarchy of inheritance-based Object orientation
+- Go puts a big emphasis on simplicity. Therefore avoids over design and the rigid hierarchy of inheritance-based Object orientation
 
 * Recommended links about the origins and goals of Go
 - The Go programming Language - Rob Pike [[https://www.youtube.com/watch?v=rKnDgT73v8s]]
-- Simplicty is complicated - Rob Pike [[https://www.youtube.com/watch?v=rFejpH_tAHM]]
+- Simplicity is complicated - Rob Pike [[https://www.youtube.com/watch?v=rFejpH_tAHM]]
 - 5 things I love about Go - Andrew Gerrand [[https://www.youtube.com/watch?v=fsTOOPB1TBY]]
 
 * First lesson - what we're covering today
 - By the end of this session you will be writing a small web service in Go
-- Setting up your enviroment
+- Setting up your environment
 - Go's basic tooling
 - Learn about Go's syntax
 - TASK - function task
 - Control structures
 - Storing data
-- TASK - Maps excerise
+- TASK - Maps exercise
 - Flags package 
 - TASK - build a service
 
@@ -46,7 +46,7 @@ Charlie Smith
 - If you want to use docker you wont have to follow these steps or indeed the path settings. But I would still recommend following these steps so you understand how to do it.
 - Head over to [[https://golang.org/dl/]]
 - Install download the installer for your OS or you can do it with curl
-- If you using curl you will need place the the source code /usr/local/go on Linux, if you're using windows, don't.
+- If you using curl you will need place the source code /usr/local/go on Linux, if you're using windows, don't.
 - Fire up a new terminal window and run go version and you should see Go output its version and distro to the terminal
 
 * Go paths
@@ -54,7 +54,7 @@ Charlie Smith
 .code /code/directory.go
 
 * GOPATH
-- This specifys the location of your Go enviroment
+- This specifys the location of your Go environment
 - The normal GOPATH is $HOME/go. In Go 1.8 GOPATH will default to this.
 - On my mac machine this would be /Users/charlie.smith1/go/src/github.com/user/hello/
 
@@ -66,7 +66,7 @@ Charlie Smith
 4. Running echo $GOPATH from your terminal should now output your GOPATH
 
 * Setting GOBIN
-- The bin directory is where your installed programs binarys live
+- The bin directory is where your installed programs binaries live
 - The standard path for this $GOPATH/bin
 - So set it up in your .profile
 .code .profilebin
@@ -78,26 +78,26 @@ Charlie Smith
 - Easy to try things out
 
 * Go documentation
-- Docs for standard libary packages [[https://golang.org/pkg/]]
+- Docs for standard library packages [[https://golang.org/pkg/]]
 - Useful go FAQ's [[https://golang.org/doc/faq]]
 
 * Lets write some Go
 
 * Creating a repo for this course
-- Throughout the course we will be doing excerises that you will need a repo for 
+- Throughout the course we will be doing exercises that you will need a repo for 
 - So please create a repo (can be public) on you're own username called goexercises
 - Eg github.com/yourusername/goexercises
 - We will be using this throughout the course
 
 * Go get
 - Go get is used to pull in remote packages from source control
-- This will download the source code into your local enviroment
+- This will download the source code into your local environment
 - Use this command to download your own empty repo you have just created.
 .code run /^go get/
 - You should now have a folder structure created for you that looks like this: ~/go/src/github.com/yourusername/goexcerises/
 
 * You're first Go Program!
-- Create a new file called main.go in the folder we created on the previus slide
+- Create a new file called main.go in the folder we created on the previous slide
 - Add the following code
 .play code/hello.go
 - We can then build and run this program with 
@@ -115,15 +115,15 @@ Charlie Smith
 .code buildandrun /^go install/,/hello/
 
 * Gofmt 
-- Great tool that formats your code to a pescribed standard set by the lanauage. Avoids long debates about standards!
+- Great tool that formats your code to a described standard set by the language. Avoids long debates about standards!
 - Consider this code
 .code code/messy.go
-- If we run the below it will format the code automactically for us.
+- If we run the below it will format the code automatically for us.
 .code run /^gofmt -w main.go/
 .code code/neat.go
 
 * Goimports
-- Another great tool that increases your speed in wrting go code. The tool automacically adds the packages used in your proram and places the path into your import statement
+- Another great tool that increases your speed in writing go code. The tool automatically adds the packages used in your proram and places the path into your import statement
 - Install it with:
 .code run /^go get golang.org/
 - To run the tool:
@@ -153,7 +153,7 @@ Charlie Smith
 - Atom: [[https://github.com/joefitzgerald/go-plus]]
 - Emacs: [[https://github.com/dominikh/go-mode.el]]
 - Visual Studio Code: [[https://github.com/Microsoft/vscode-go]]
-- If your editor isnt listed please go here to find it [[https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins]]
+- If your editor isn't listed please go here to find it [[https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins]]
 
 * Go's syntax
 
@@ -162,7 +162,7 @@ Charlie Smith
 .play code/variables.go
 
 * Variables continued..
-- Variables that are not assigned when declaired default to these zero values
+- Variables that are not assigned when declared default to these zero values
 - 0 for numeric types
 - false for boolean type
 - "" for empty strings
@@ -171,7 +171,7 @@ Charlie Smith
 - Functions in Go can zero more arguments and they can also return zero or more items
 .play code/functions.go
 - In the above example the function add takes two ints and returns 1 int
-- Take note that we need to declair the return type after the function name
+- Take note that we need to declare the return type after the function name
 
 * Functions continued..
 - We can also shorten the type declarations, here's an example with the add functions arguments.
@@ -195,10 +195,10 @@ Charlie Smith
 - One function that returns a string with an int
 - One function that has a named return type (your choice of type) with a "naked" return
 - You need to create a main function that will call all 3 functions and print the result of each one
-- Your program must complile and run successfully
+- Your program must compile and run successfully
 
 * Types 
-- Go is a strongly typed langauge. It cares a lot about type
+- Go is a strongly typed language. It cares a lot about type
 - Go has the following basic types:
 - bool 
 - string
@@ -209,7 +209,7 @@ Charlie Smith
 - complex64, complex128
 
 * Types continued..
-- Go's syntax demands you are explict about type.
+- Go's syntax demands you are explicit about type.
 - Whats wrong with this code?
 .play -numbers -edit code/types.go
 
@@ -219,12 +219,12 @@ Charlie Smith
 .play code/type_conversions.go
 
 * Constants 
-- In Go constants are declaired like variables just prefixed wuth const keyword
+- In Go constants are declared like variables just prefixed wuth const keyword
 - Consider the following code
 .play code/constants.go
 
 * Loops
-- Go only has one looping construct and thats "for"
+- Go only has one looping construct and that's "for"
 .play code/for.go ///Bog/,/ end/
 
 * Control structures
@@ -234,7 +234,7 @@ Charlie Smith
 .code code/control_structures.go
 
 * Switch
-- Switch statements probably look simliar to what you have in other languages
+- Switch statements probably look similar to what you have in other languages
 - Switch cases evaluate in order top to bottom, stopping when a case succeeds
 .play code/switch.go /{/,/// end/
 
@@ -242,7 +242,7 @@ Charlie Smith
 .code code/switch.go /// end/,/^}/
 
 * Defer
-- Defer defers the execuation of a function till the surronding function returns
+- Defer defers the execution of a function till the surrounding function returns
 - The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns
 .play code/defer.go
 
@@ -261,11 +261,11 @@ Charlie Smith
 .play code/slices3.go
 
 * Maps
-- Maps are like mulitdimensional arrays in other languages. Great for key value pairs.
+- Maps are like multidimensional arrays in other languages. Great for key value pairs.
 .play code/maps.go /START OMIT/,/END OMIT/
 
 * TASK
-- Use the go get command to get the excerise repo github.com/chazsmi/mapsexcerise
+- Use the go get command to get the exercise repo github.com/chazsmi/mapsexcerise
 - Have a Go!
 
 * Flags
