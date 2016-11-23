@@ -108,7 +108,7 @@ Charlie Smith
 
 * The build and run tools
 - Go comes with excellent tooling and these are just two.
-- Go run builds and then runs a binary for your program and is basically a convenience tool. Those used to dynamically typed languages will probably identify with this.
+- Go run builds and then runs a binary for your program and is basically a convenience tool. Those of you used to dynamically typed languages will probably identify with this.
 - go build - builds a binary in my current directory but doesn't run the binary. So the workflow would be slightly different
 .code buildandrun /^go build/,/^hello/
 - go install - builds a binary and places it in my GOBIN directory I can then run just run my program like this

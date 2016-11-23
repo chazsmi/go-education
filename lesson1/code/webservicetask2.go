@@ -14,6 +14,7 @@ type Reponse struct {
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
+	// Build the response struct
 	res := Reponse{
 		Code:   200,
 		Result: fmt.Sprintf("%s %s", "hello", r.FormValue("name")),
@@ -23,7 +24,11 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Set the json header
 	w.Header().Set("Content-Type", "application/json")
+
+	// Write the response
 	w.Write(json)
 }
 
