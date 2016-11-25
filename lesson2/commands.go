@@ -1,0 +1,3 @@
+// START TEST OMIT
+go test
+// END TEST OMIT

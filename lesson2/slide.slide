@@ -1,0 +1,63 @@
+Go Education
+Lesson 2
+
+Charlie Smith
+
+* Review of web service solutions
+
+* What we are covering today
+- Go proverbs
+- Testing
+- Error handling
+
+* Go Proverbs
+- Don't communicate by sharing memory, share memory by communicating.
+- Concurrency is not parallelism.
+- Channels orchestrate; mutexes serialize.
+- The bigger the interface, the weaker the abstraction.
+- Make the zero value useful.
+- interface{} says nothing.
+- Gofmt's style is no one's favorite, yet gofmt is everyone's favorite.
+- A little copying is better than a little dependency.
+- Syscall must always be guarded with build tags.
+- Cgo must always be guarded with build tags.
+- Cgo is not Go.
+- With the unsafe package there are no guarantees.
+
+* Go Proverbs continued...
+- Clear is better than clever.
+- Reflection is never clear.
+- Errors are values.
+- Don't just check errors, handle them gracefully.
+- Design the architecture, name the components, document the details.
+- Documentation is for users.
+- Don't panic.
+
+- A copy of these proverbs can be fond at [[https://go-proverbs.github.io/]]
+
+* Testing
+
+* Basic tests
+- Go has its own testing package as part of the standard libary [[https://golang.org/pkg/testing/]]
+.code code/testingexample.go /START BASIC OMIT/,/END BASIC OMIT/
+- To run the tests you need to run:
+.code commands.go /START TEST OMIT/,/END TEST OMIT/
+
+* Table driven tests
+- Here is ane example of how you can also do table tests in Go
+.code code/testingexample.go /START TT OMIT/,/END TT OMIT/
+
+* Error handling
+- Go proverb - Don't just check errors, handle them gracefully.
+- Go tries to encourage you to handle failure conditions in fact in goes out of its way to do so
+- Go has an error package [[https://golang.org/pkg/errors/]]
+- You see a lot of this in Go code
+.code code/errorhandling.go /START ERROR OMIT/,/END ERROR OMIT/
+
+* Error types
+- You can also create error types, These are better because they are allow you provide/recieve more context about the error
+.code code/errorhandling.go /START ERROR TYPE OMIT/,/END ERROR TYPE OMIT/
+
+* Even better way to handle errors
+- Dave Cheeny is a prolific Go developer and he wanted to improve the information you get back from errors [[https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully]]
+
