@@ -37,15 +37,90 @@ Charlie Smith
 
 * Testing
 
+* Testing
+- go get github.com/chazsmi/testingexample
+- You can use this as an example and run the commands yourselve if you wish
+
 * Basic tests
 - Go has its own testing package as part of the standard libary [[https://golang.org/pkg/testing/]]
-.code code/testingexample.go /START BASIC OMIT/,/END BASIC OMIT/
+.code code/testing/main_test.go /START BASIC OMIT/,/END BASIC OMIT/
 - To run the tests you need to run:
 .code commands.go /START TEST OMIT/,/END TEST OMIT/
 
 * Table driven tests
-- Here is ane example of how you can also do table tests in Go
-.code code/testingexample.go /START TT OMIT/,/END TT OMIT/
+- Here is one example of how you can also do table tests in Go
+.code code/testing/main_test.go /START TT OMIT/,/END TT OMIT/
+
+* Benchmarks
+- Go gives you the ability to write benchmarks as part of the testing package 
+.code code/testing/main_test.go /START BENCH OMIT/,/END BENCH OMIT/
+- To run the benchmarks
+.code commands.go /START BENCH OMIT/,/END BENCH OMIT/
+
+* Testing from 1.7
+- The Go team made some improvements in the testing from 1.7
+.code code/testing/main_test.go /START TEST1.7 OMIT/,/END TEST1.7 OMIT/
+
+* Testing from 1.7 continued...
+- The Run method also means teardown and setup is easier
+.code code/testing/main_test.go /START TEARDOWN OMIT/,/END TEARDOWN OMIT/
+
+* TASK
+- Take your maps excerise from lesson 1 and write some 2 unit tests for your 3 functions
+- Put your tests in file called main_test.go in the same directory as your orginal main file
+- Each function should have 2 tests one testing failure and one testing success. A total of 6 tests
+- Write a benchmark function for the Average function
+- If you dont have your code from lesson 1 check out the repo again and you will find the 3 functions written for you
+
+* Interfaces
+
+* Structs
+- Before we get onto intferfaces we are going to look at structs
+- Here is the struct definition as we saw in lesson 1
+.code code/interfaces.go /START STRUCT OMIT/,/END STRUCT OMIT/
+- We can intialise structs in the following ways
+.code code/interfaces.go /START IN OMIT/,/END IN OMIT/
+
+* Methods on structs
+- You can also add methods on structs
+.code code/interfaces.go /START METHODS OMIT/,/END METHODS OMIT/
+- and then call those methods like this
+.code code/interfaces.go /START CALL METHOD OMIT/,/END CALL METHOD OMIT/
+
+* Embedded types
+- You can also have embedded types like this
+.code code/interfaces.go /START EMBEDDED TYPES OMIT/,/END EMBEDDED TYPES OMIT/
+- and call it like this
+.code code/interfaces.go /START ET CALL OMIT/,/END ET CALL OMIT/
+
+* Interfaces
+- Interfaces are one of the most powerful things in Go
+.code code/interfaces.go /START IF OMIT/,/END IF OMIT/
+
+* Interfaces continued..
+- The animal interface in action
+.code code/interfaces.go /START IFA OMIT/,/END IFA OMIT/
+- As you can see if we declare Animal it can be filled with any struct that satisfies that interface
+- This makes mocking really easy
+
+* Interfaces continued..
+- The interface{} type
+- Do you remember the proverb?
+
+* Interfaces continued..
+- The interface{} type doesnt say much but its useful when you want describe any kind of type
+- Consider the following example
+.code code/interfaces.go /START ITT OMIT/,/END ITT OMIT/
+- You could pass that function any kind of type
+
+* TASK
+- go get github.com/chazsmi/interfaceexercise
+- Developers always have a lot to say.
+- Create an interface named "Developer" that all of the language structs satisfy
+- Print out all the responses from the developer structs listed in the slices
+- You must only call one method on your interface to do this
+
+* Error Handling
 
 * Error handling
 - Go proverb - Don't just check errors, handle them gracefully.
@@ -60,4 +135,26 @@ Charlie Smith
 
 * Even better way to handle errors
 - Dave Cheeny is a prolific Go developer and he wanted to improve the information you get back from errors [[https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully]]
+- He has written a great package that helps with handling errors more intelligently
+- Get his package here [[https://github.com/pkg/errors]]
 
+* Pointers
+
+* Pointers
+- Pointers reference a value in memory rather than the value of something itself
+- Consider the following example
+.play code/pointers.go
+
+* Pointers continued..
+- This adapted code will be behave slightly differently
+.play code/pointers2.go
+
+* Pointers continued..
+- A Go pointer is represented by a * (asterisk) followed by the type
+- It is also used to dereference a pointer variables
+.play code/pointers3.go /START EG OMIT/,/END EG OMIT/
+- Another way to get pointer would be using the function new()
+.play code/pointers4.go /START NEW OMIT/,/END NEW OMIT/
+
+* TASK - Refactor your web service to do the following
+-
