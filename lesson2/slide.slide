@@ -8,7 +8,12 @@ Charlie Smith
 * What we are covering today
 - Go proverbs
 - Testing
+- TASK testing
+- Interfaces
+- TASK interfaces
 - Error handling
+- Pointers
+- TASK web service refactor
 
 * Go Proverbs
 - Don't communicate by sharing memory, share memory by communicating.
@@ -39,10 +44,10 @@ Charlie Smith
 
 * Testing
 - go get github.com/chazsmi/testingexample
-- You can use this as an example and run the commands yourselve if you wish
+- You can use this as an example and run the commands yourselves if you wish
 
 * Basic tests
-- Go has its own testing package as part of the standard libary [[https://golang.org/pkg/testing/]]
+- Go has its own testing package as part of the standard library [[https://golang.org/pkg/testing/]]
 .code code/testing/main_test.go /START BASIC OMIT/,/END BASIC OMIT/
 - To run the tests you need to run:
 .code commands.go /START TEST OMIT/,/END TEST OMIT/
@@ -66,11 +71,11 @@ Charlie Smith
 .code code/testing/main_test.go /START TEARDOWN OMIT/,/END TEARDOWN OMIT/
 
 * TASK
-- Take your maps excerise from lesson 1 and write some 2 unit tests for your 3 functions
-- Put your tests in file called main_test.go in the same directory as your orginal main file
+- Take your maps exercise from lesson 1 and write some 2 unit tests for your 3 functions
+- Put your tests in file called main_test.go in the same directory as your original main file
 - Each function should have 2 tests one testing failure and one testing success. A total of 6 tests
 - Write a benchmark function for the Average function
-- If you dont have your code from lesson 1 check out the repo again and you will find the 3 functions written for you
+- If you don't have your code from lesson 1 check out the repo again and you will find the 3 functions written for you
 
 * Interfaces
 
@@ -78,7 +83,7 @@ Charlie Smith
 - Before we get onto intferfaces we are going to look at structs
 - Here is the struct definition as we saw in lesson 1
 .code code/interfaces.go /START STRUCT OMIT/,/END STRUCT OMIT/
-- We can intialise structs in the following ways
+- We can initialise structs in the following ways
 .code code/interfaces.go /START IN OMIT/,/END IN OMIT/
 
 * Methods on structs
@@ -108,7 +113,7 @@ Charlie Smith
 - Do you remember the proverb?
 
 * Interfaces continued..
-- The interface{} type doesnt say much but its useful when you want describe any kind of type
+- The interface{} type doesn't say much but its useful when you want describe any kind of type
 - Consider the following example
 .code code/interfaces.go /START ITT OMIT/,/END ITT OMIT/
 - You could pass that function any kind of type
@@ -157,4 +162,9 @@ Charlie Smith
 .play code/pointers4.go /START NEW OMIT/,/END NEW OMIT/
 
 * TASK - Refactor your web service to do the following
--
+- Go to [[https://github.com/chazsmi/webservicetask]] to get the info
+- Add the new endpoints to your service
+- Split your program into packages where possible
+- Add unit tests for all functions in all packages. Making sure to use the new 1.7 features. https://golang.org/pkg/net/http/httptest/
+- Benchmark at least one function in each package
+- Try and incorporate the things we have covered in this lesson
