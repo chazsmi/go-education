@@ -1,0 +1,86 @@
+Go Education
+Lesson 3
+
+Charlie Smith
+
+* Review of web service solutions
+
+* What we are covering today
+- Dependency Management
+- Concurrency
+
+* Dependency Management
+
+* Dependency Management
+- Dependency management as been a controversial topic in the Go comunity pretty much since version 1
+- The Go team decided not to strike an opinion or provide any tools to handle depedencys 
+- However as of 1.5 they did provide support for vendoring. You had to turn this on by setting the env var = GO15VENDOREXPERIMENT=1
+- In 1.6 this was turned on automactically so you didnt need to set the env var any more
+
+* Depdendency Management how to use vendoring
+- When you vendor in Go your directory structure would like this
+    - $GOPATH
+         - src/
+            - github.com/chazsmi/webservicetask/
+                - main.go
+                - vendor/
+                     - github.com/pkg/sftp/
+                     - golang.org/x/crypto/ssh/
+                        - agent.go
+                - main_test.go
+
+* Another options
+- Copy packages locally. When building modify the GOPATH to reference the local package store.
+- I would not recommend doing this as if you start modifying your GOPATH dynamically things get ugly.
+- Revision Locking - package source control versions are recorded. Versions are updated into the GOPATH package tree. Requires switching GOPATH for every project.
+
+* Tools 
+- Git submodules - its an option... but I prefer not to
+- [[https://github.com/kardianos/govendor][Godep]]
+- [[https://github.com/kardianos/govendor][Govendor]]
+- [[https://github.com/Masterminds/glide][Glide]] - Would recommend this one 
+- [[https://github.com/govend/govend][Govend]] - Different to Govendor believe it or not
+- [[https://github.com/FiloSottile/gvt][Gvt]]
+
+* Further reading
+- [[https://github.com/golang/go/wiki/PackageManagementTools]] Go wiki on DM
+- [[https://www.youtube.com/watch?v=CdhucJShJU8]] - Talk by Bill Kennedy on DM
+
+* Concurrency 
+- What is concurrency?
+- What is not concurrency?
+
+* What is concurrency?
+- Concurrency is the composition of independently executing computations.
+
+* So what's parallelism
+- A type of computation in which many calculations are carried out simultaneously, or the execution of processes are carried out simultaneously
+- Great talk on this from Rob Pike [[https://www.youtube.com/watch?v=cN_DpYBzKso]]
+
+* Consider the following code
+- Some really simple quite dull code
+.play code/concurrency.go /START OMIT/,/END OMIT/
+
+* What happened?
+- The main function finished and took the program down before the pointlessFunc could finish runing.
+.code code/concurrency.go /START OMIT/,/END OMIT/
+
+* Lets change the code slightly...
+.play -edit code/concurrency1.go /START OMIT/,/END OMIT/
+
+* What is a goroutine?
+- A Go routine is a independently executing function launched by a go statement
+- It's not a thread
+- It's very cheap. It's practical to have thousands, even hundreds of thousands of goroutines.
+- There might be only one thread in a program with thousands of goroutines.
+- Instead, goroutines are multiplexed dynamically onto threads as needed to keep all the goroutines running.
+- However if you thinok of it as a very very cheap thread then you wouldnt be to far off
+
+* Channels
+- In concurrent programs its common to need to communicate between go routines. Channels enable this.
+.code code/concurrency2.go /START DECLARE OMIT/,/END DECLARE OMIT/
+
+* Concurrency is not parallelism
+- Concurrency is not parallelism, although it enables parallelism.
+
+
