@@ -50,6 +50,9 @@ Charlie Smith
 - What is concurrency?
 - What is not concurrency?
 
+* Concurrency is not parallelism
+- Concurrency is not parallelism, although it enables parallelism.
+
 * What is concurrency?
 - Concurrency is the composition of independently executing computations.
 
@@ -74,13 +77,47 @@ Charlie Smith
 - It's very cheap. It's practical to have thousands, even hundreds of thousands of goroutines.
 - There might be only one thread in a program with thousands of goroutines.
 - Instead, goroutines are multiplexed dynamically onto threads as needed to keep all the goroutines running.
-- However if you thinok of it as a very very cheap thread then you wouldnt be to far off
+- However if you think of it as a very, very cheap thread then you wouldnt be to far off
 
 * Channels
 - In concurrent programs its common to need to communicate between go routines. Channels enable this.
 .code code/concurrency2.go /START DECLARE OMIT/,/END DECLARE OMIT/
 
-* Concurrency is not parallelism
-- Concurrency is not parallelism, although it enables parallelism.
+* Using channels
+.play code/concurrency3.go /START OMIT/,/END OMIT/
 
+* A note on channels
+- for those of you that are Go experts you can also create buffered go channels
+- This effects the synchronization of channels
+- We wont cover this today
+
+* Remember the proverb...?
+- Don't communicate by sharing memory, share memory by communicating.
+
+* Channel challenge
+- Update your copy of github.com/chazsmi/mapsexcerise
+- Change the program to call the 3 "people" methods in a concurrent fashion
+- Print the results of these calls to the terminal
+
+* Concurrency Patterns
+
+* Generate
+- Generate a channel from a function
+.play code/concurrency4.go /START OMIT/,/END OMIT/
+
+* Fan in
+.play code/concurrency5.go /START OMIT/,/END OMIT/
+
+* Select 
+- Select allows you to handle mutlple channels. Its a bit like a switch.
+- All channels are evaluated.
+- Selection blocks until one communication can proceed, which then does.
+- If multiple can proceed, select chooses pseudo-randomly
+- A default clause, if present, executes immediately if no channel is ready.
+
+* Refactor our fan in function
+.play code/concurrency6.go /START OMIT/,/END OMIT/
+
+* Timeout using Select
+.play code/concurrency7.go /START OMIT/,/END OMIT/
 
