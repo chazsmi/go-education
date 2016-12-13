@@ -13,7 +13,7 @@ func main() {
 	c := make(chan string)
 
 	// Call the pointless function in a new goroutine
-	go pointlessFunc("Hello gophers", &c)
+	go pointlessFunc("Hello gophers", c)
 
 	// Loop, waiting for the function to send data back
 	// The main function will be blocked by <-c until it recieves a value
@@ -23,7 +23,7 @@ func main() {
 	}
 }
 
-func pointlessFunc(msg string, c *chan string) {
+func pointlessFunc(msg string, c chan string) {
 	for i := 0; i < 5; i++ {
 		// Note the change to Sprintf
 		c <- fmt.Sprintf("%s %d", msg, i)
