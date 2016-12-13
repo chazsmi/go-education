@@ -8,6 +8,9 @@ Charlie Smith
 * What we are covering today
 - Dependency Management
 - Concurrency
+- Context
+- Context task
+- Web service task
 
 * Dependency Management
 
@@ -118,6 +121,34 @@ Charlie Smith
 * Refactor our fan in function
 .play code/concurrency6.go /START OMIT/,/END OMIT/
 
-* Timeout using Select
+* Timeout using select
 .play code/concurrency7.go /START OMIT/,/END OMIT/
 
+* Quit channels
+.play code/concurrency8.go /START OMIT/,/END OMIT/
+
+* Further reading
+- [[https://talks.golang.org/2012/concurrency.slide#1]] Slides from Rob Pike
+- [[https://www.youtube.com/watch?v=2HOO5gIgyMg&t=936s]] Advanced concurrency patterns
+
+* Context
+- The context package is to add request-scoped values, cancelation signals, and deadlines across API boundaries to all the goroutines involved in handling a request
+- Before 1.7 it was a external package. In 1.7 it was brought into the standard lib
+- Context is only for request-scoped values. 
+- Eg a database connection wouldnt be classed as requested scoped as it can used by lots of requests
+- A database user id would be request scoped as its specfic information about the request only used by the request
+
+* The context interface
+.code code/context.go /START OMIT/,/END OMIT/
+
+* Further reading on context
+- [[https://golang.org/pkg/context/]] The context docs
+- [[https://blog.golang.org/context]] Google's intro to context
+- [[https://medium.com/@cep21/how-to-correctly-use-context-context-in-go-1-7-8f2c0fafdf39#.4hbeock7r]] Article about how to use context
+
+* Context task
+- Go get github.com/chazsmi/concurrency-task
+- Complete the tasks
+
+* Webservice task
+- Please see the updated readme for the next set of tasks
