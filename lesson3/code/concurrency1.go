@@ -9,7 +9,10 @@ import (
 // START OMIT
 
 func main() {
+	// We have added the go statement before calling the function
+	// This will lanch the pointlessFunc in a new goroutine
 	go pointlessFunc("Hello gophers")
+
 }
 
 func pointlessFunc(msg string) {

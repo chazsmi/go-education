@@ -67,11 +67,11 @@ Charlie Smith
 - Some really simple quite dull code
 .play code/concurrency.go /START OMIT/,/END OMIT/
 
+* Lets change the code slightly...
+.play code/concurrency1.go /START OMIT/,/END OMIT/
+
 * What happened?
 - The main function finished and took the program down before the pointlessFunc could finish runing.
-.code code/concurrency.go /START OMIT/,/END OMIT/
-
-* Lets change the code slightly...
 .play -edit code/concurrency1.go /START OMIT/,/END OMIT/
 
 * What is a goroutine?
@@ -80,7 +80,7 @@ Charlie Smith
 - It's very cheap. It's practical to have thousands, even hundreds of thousands of goroutines.
 - There might be only one thread in a program with thousands of goroutines.
 - Instead, goroutines are multiplexed dynamically onto threads as needed to keep all the goroutines running.
-- However if you think of it as a very, very cheap thread then you wouldnt be to far off
+- However if you think of it as a very, very cheap thread then you wouldn't be to far off
 
 * Channels
 - In concurrent programs its common to need to communicate between go routines. Channels enable this.
@@ -112,7 +112,7 @@ Charlie Smith
 .play code/concurrency5.go /START OMIT/,/END OMIT/
 
 * Select 
-- Select allows you to handle mutlple channels. Its a bit like a switch.
+- Select allows you to handle multiple channels. Its a bit like a switch.
 - All channels are evaluated.
 - Selection blocks until one communication can proceed, which then does.
 - If multiple can proceed, select chooses pseudo-randomly
@@ -132,11 +132,11 @@ Charlie Smith
 - [[https://www.youtube.com/watch?v=2HOO5gIgyMg&t=936s]] Advanced concurrency patterns
 
 * Context
-- The context package is to add request-scoped values, cancelation signals, and deadlines across API boundaries to all the goroutines involved in handling a request
+- The context package is to add request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request
 - Before 1.7 it was a external package. In 1.7 it was brought into the standard lib
 - Context is only for request-scoped values. 
-- Eg a database connection wouldnt be classed as requested scoped as it can used by lots of requests
-- A database user id would be request scoped as its specfic information about the request only used by the request
+- e.g. a database connection wouldn't be classed as requested scoped as it can used by lots of requests
+- A database user id would be request scoped as its specific information about the request only used by the request
 
 * The context interface
 .code code/context.go /START OMIT/,/END OMIT/
