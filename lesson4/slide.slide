@@ -1,0 +1,37 @@
+Go Education
+Lesson 4
+
+Charlie Smith
+
+* Review of web service solutions
+
+* What we are covering today
+- Mutexes
+- The Go Community
+- Go in production
+- TASK deploy your code
+- Design patterns and Package organistion
+- TASK design patterns
+- TASK web service
+
+* Mutexes
+
+* What are they and what are they for?
+- Go mutexes are part of the [[https://golang.org/pkg/sync/][Sync package]]
+- The Sync package is used for low level synchronization between Go routines
+- Go mutexes are used to safely access data from Go routines
+- They allow us synchronize access to state.
+- They are import part of building concurrent programs
+
+* The syntax is very simple
+.play code/mutexes.go /START OMIT/,/END OMIT/
+
+* Points to remember about Mutexes
+- The zero value of a Mutex is an unlocked mutex
+- Mutexes must NOT be copied once created
+- You can just use channels to control access to data
+- When to use Channels: passing ownership of data, distributing units of work and communicating async results
+- When to use Mutexes: caches, state (or just dont share state, ever)
+- If you find yourself in a big muddle with lots mutexes, reassess your design
+
+
