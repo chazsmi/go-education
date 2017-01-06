@@ -7,27 +7,47 @@ import (
 	"time"
 )
 
+type Cache struct {
+	sync.Mutex // Protects the store below
+	Number     map[int]string
+}
+
+func New() *Cache {
+	return &Cache{
+		Number: make(map[int]string),
+	}
+}
+
+func (c Cache) Get(key int) string {
+	c.Lock()
+	defer c.Unlock()
+	return c.Number[key]
+}
+
+func (c Cache) Set(key int, value string) {
+	c.Lock()
+	defer c.Unlock()
+	c.Number[key] = value
+}
+
 func main() {
 	// START OMIT
-	var mutex = sync.Mutex{}
-	data := []int{1, 4, 222, 33}
-
+	ca := New()
 	for c := 0; c < 10; c++ {
-		go func(data []int) {
+		go func(cache *Cache) {
 			for r := 0; r < 10; r++ {
-				mutex.Lock()
-				rand.Seed(time.Now().Unix())
-				n := rand.Intn(len(data)-1) + 1
-				data[n]++
-				mutex.Unlock()
-				fmt.Printf("I added to %d! \n", n)
-				time.Sleep(time.Duration(rand.Intn(1e3)) * time.Millisecond)
+				s1 := rand.NewSource(time.Now().UnixNano())
+				r1 := rand.New(s1)
+				//	fmt.Print(r1.Intn(2), ",")
+				cache.Set(r1.Intn(2), "charlie")
+				fmt.Printf("I added to %d! \n", cache.Number)
+				time.Sleep(time.Duration(1 * time.Millisecond))
 			}
-		}(data)
+		}(ca)
 	}
 	// Delay the finishing off the main function to allow go routines to run
 	time.Sleep(time.Second * 2)
-	fmt.Println("%+v", data)
+	fmt.Println("%+v", ca)
 
 	// END OMIT
 }
