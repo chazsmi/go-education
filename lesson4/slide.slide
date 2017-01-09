@@ -7,11 +7,10 @@ Charlie Smith
 
 * What we are covering today
 - Mutexes
-- The Go Community
+- TASK - Mutex excercise
 - Go in production
-- TASK deploy your code
-- Design patterns and Package organistion
-- TASK design patterns
+- Understanding nil
+- The Go Community
 - TASK web service
 
 * Mutexes
@@ -23,8 +22,11 @@ Charlie Smith
 - They allow us synchronize access to state.
 - They are import part of building concurrent programs
 
-* The Mutex syntax is very simple
-.play code/mutexes.go /START OMIT/,/END OMIT/
+* Consider the following example
+.code code/mutexes.go /START SETUP/,/END SETUP/
+
+* Mutex syntax continued
+.play -edit code/mutexes.go /START OMIT/,/END OMIT/
 
 * Points to remember about Mutexes
 - The zero value of a Mutex is an unlocked mutex
@@ -34,3 +36,84 @@ Charlie Smith
 - When to use Mutexes: caches, state (or just dont share state, ever)
 - If you find yourself in a big muddle with lots mutexes, reassess your design
 
+* A real world example
+- Socket Events [[https://github.com/chazsmi/socket-events][https://github.com/chazsmi/socket-events]]
+- Have a look at the package and find where the locks are enforced
+- Then read up on the difference between Mutex and RWMutex
+
+* But what about the Atomic Package?
+- Very small performance increase on using a Mutex
+- How has some cavats
+- "All calls to Store for a given Value must use values of the same concrete type. Store of an inconsistent type panics, as does Store(nil)."
+- "Once Store has been called, a Value must not be copied."
+- So only use if you really need to worry about contention or your program is very performance sensitive.
+- More information on how you can use the atomic package to sync state between Go routines can be found in [[https://talks.golang.org/2015/tricks.slide#28][Andrew Gerrard's talk]] at the UK Go Conference 2015
+- The Atomic package docs can be found [[https://golang.org/pkg/sync/atomic/][here]]
+
+* Mutex excerise 
+- go get [[https://github.com/chazsmi/mutex-excercise][https://github.com/chazsmi/mutex-excercise]]
+- Complete the tasks in readme
+
+* Deployment
+
+* Go in production
+- You have two options when running your code in production
+- Not going to go into the various automated ways of actual deploying the infastructure just about the code
+
+* Install an envoriment on the machine
+- Run your program like you do locally.
+- You will need to install go, set up your GOPATH and build your binary on each new machine
+- This has the disavantage of machines taking longer to be built and needing to write more code to build these machines with tools such as Ansible terraform.
+
+* Go gives us another way....
+
+* Static binaries
+- Static binaries are binaries with all dependencies config and envoriment bulit in
+- If we are using static binaries it means to can compile a binary then just build a blank machine and run the binary in isloation
+- The only excemption is certs. If you want to do TLS you need those on your machine as well as the binary
+- If you are using containers to deploy, having static binaries means you can use scratch containers.
+- The go build tool set lets us build these binaries
+
+* Building a static binary
+.code code/run
+
+* Understanding nil
+- Nil is useful and important in Go
+- nil is not null - Go doesnt support null
+- Nil is a kind of zero
+- Nil has no type
+- Nil is NOT a keyword in Go
+
+* Do you remember zero values?
+- We talked about the defaults that Go's types have in lesson 1
+- Bool has a zero value of false
+- Numbers are 0
+- Strings are ""
+- You remember right...?
+
+* So...
+- Channels, pointers, slices, maps, interfaces and functions all have a zero value of nil
+
+* The Go Community
+- Go Time - a podcast full of the latest go news and special guests [[https://changelog.com/gotime][https://changelog.com/gotime]]
+- Go Forum - [[https://forum.golangbridge.org/][https://forum.golangbridge.org/]]
+- Gopher's Slack channel - [[https://invite.slack.golangbridge.org/][https://invite.slack.golangbridge.org/]]
+- Gobridge - aimed at getting more people to write Go [[https://golangbridge.org/][https://golangbridge.org/]]
+- Adranlabs go training resources - [[https://github.com/ardanlabs/gotraining][https://github.com/ardanlabs/gotraining]]
+
+* Gophers to follow on Twitter
+- [[https://twitter.com/enneff?lang=en][Andrew Gerrand]] - Member of the Go team
+- [[https://twitter.com/rob_pike][Rob Pike]] - One of the original architects of the Go language at Google
+- [[https://twitter.com/goinggodotnet][Bill Kennedy]] -  Author of Go in action and runs a Go training courses around the globe
+- [[https://twitter.com/davecheney][Dave Cheney]] - Blogger and speaker on Go
+- [[https://twitter.com/kelseyhightower][Kelsey Hightower]] - Major contributor to Kubernetes
+
+* Blogs 
+- [[http://dave.cheney.net/][The acme of foolishness - Dave Cheney]]
+- [[https://blog.golang.org/][The Go Blog - Language Team]]
+- [[https://golang.org/doc/#references][Go Documentation]]
+- [[http://www.goinggo.net/][Going Go - William Kennedy]]
+
+* Web Service task
+- Update you're copy of the web service task [[https://github.com/chazsmi/webservicetask][https://github.com/chazsmi/webservicetask]]
+- Complete the tasks
