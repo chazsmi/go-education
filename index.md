@@ -44,6 +44,7 @@ The main purpose of the course is to jump start developers into learning Go with
 ## Lesson 5 
 - Understanding nil
 - Avoiding allocations and using memory
+- Profiling
 
 ## Lesson 6
 - Recap lesson content submmitted by students
