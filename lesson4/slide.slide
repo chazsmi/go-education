@@ -7,7 +7,7 @@ Charlie Smith
 
 * What we are covering today
 - Mutexes
-- TASK - Mutex excercise
+- TASK - Mutex exercise
 - Go in production
 - Understanding nil
 - The Go Community
@@ -26,14 +26,14 @@ Charlie Smith
 .code code/mutexes.go /START SETUP/,/END SETUP/
 
 * Mutex syntax continued
-.play -edit code/mutexes.go /START OMIT/,/END OMIT/
+.code code/mutexes.go /START OMIT/,/END OMIT/
 
 * Points to remember about Mutexes
 - The zero value of a Mutex is an unlocked mutex
 - Mutexes must NOT be copied once created
 - You can of course just use channels to control access to data
 - When to use Channels: passing ownership of data, distributing units of work and communicating async results
-- When to use Mutexes: caches, state (or just dont share state, ever)
+- When to use Mutexes: caches, state (or just dont share state... ;))
 - If you find yourself in a big muddle with lots mutexes, reassess your design
 
 * A real world example
@@ -43,14 +43,14 @@ Charlie Smith
 
 * But what about the Atomic Package?
 - Very small performance increase on using a Mutex
-- How has some cavats
+- How has some caveats
 - "All calls to Store for a given Value must use values of the same concrete type. Store of an inconsistent type panics, as does Store(nil)."
 - "Once Store has been called, a Value must not be copied."
 - So only use if you really need to worry about contention or your program is very performance sensitive.
 - More information on how you can use the atomic package to sync state between Go routines can be found in [[https://talks.golang.org/2015/tricks.slide#28][Andrew Gerrard's talk]] at the UK Go Conference 2015
 - The Atomic package docs can be found [[https://golang.org/pkg/sync/atomic/][here]]
 
-* Mutex excerise 
+* Mutex exercise 
 - go get [[https://github.com/chazsmi/mutex-excercise][https://github.com/chazsmi/mutex-excercise]]
 - Complete the tasks in readme
 
@@ -60,17 +60,17 @@ Charlie Smith
 - You have two options when running your code in production
 - Not going to go into the various automated ways of actual deploying the infastructure just about the code
 
-* Install an envoriment on the machine
+* Install an environment on the machine
 - Run your program like you do locally.
 - You will need to install go, set up your GOPATH and build your binary on each new machine
-- This has the disavantage of machines taking longer to be built and needing to write more code to build these machines with tools such as Ansible terraform.
+- This has the disadvantage of machines taking longer to be built and needing to write more code to build these machines with tools such as Ansible terraform.
 
 * Go gives us another way....
 
 * Static binaries
-- Static binaries are binaries with all dependencies config and envoriment bulit in
+- Static binaries are binaries with all dependencies config and environment builtin
 - If we are using static binaries it means to can compile a binary then just build a blank machine and run the binary in isloation
-- The only excemption is certs. If you want to do TLS you need those on your machine as well as the binary
+- The only exemption is certs. If you want to do TLS you need those on your machine as well as the binary
 - If you are using containers to deploy, having static binaries means you can use scratch containers.
 - The go build tool set lets us build these binaries
 
@@ -79,22 +79,57 @@ Charlie Smith
 
 * Understanding nil
 - Nil is useful and important in Go
-- nil is not null - Go doesnt support null
+- nil is not null - Go doesn't support null
 - Nil is a kind of zero
 - Nil has no type
 - Nil is NOT a keyword in Go
 
 * Do you remember zero values?
-- We talked about the defaults that Go's types have in lesson 1
+- We talked about the defaults for Go's types in lesson 1
 - Bool has a zero value of false
 - Numbers are 0
 - Strings are ""
 - You remember right...?
 
 * So...
-- Channels, pointers, slices, maps, interfaces and functions all have a zero value of nil
+- Pointers, slices, maps, channels, functions and interfaces all have a zero value of nil
+- So nil is the default for most types in Go
+
+* Nil pointers
+- Remember pointers? - a reference to something in memory
+- A nil pointer points to nothing - Simple
+
+* Nil Slices
+- Slices are are made of three values under the hood 
+- A pointer - the underlying array
+- A Length
+- A capacity
+
+- So a nil slice is just a slice with no underlying array
+- The length and capacity are both 0
+
+* Nil maps
+- Maps are reference types, like pointers. (So you dont need to assign pointers to them)
+.code code/nilstuff.go /START MAPS OMIT/,/END MAPS OMIT/
+- The above value would = nil
+- It DOESN'T point to an initialized map
+- When reading a nil map it will behave like an empty map
+- However trying write to a nil map will cause a runtime panic
+.code code/nilstuff.go /START MAPS MAKE OMIT/,/END MAPS MAKE OMIT/
+- The make function above should be used to initialize a map
+
+* Channels and Functions
+- These are both nil pointers by default
+
+* Interfaces
+- Interfaces are not pointers
+- Under the hood interfaces are made of two things a type and a value (type, value)
+- So by default they are (nil, nil)
+.play code/nilinterface.go /START MAPS INTERFACES OMIT/,/END MAPS INTERFACES OMIT/
 
 * The Go Community
+
+* Stuff to get involved in
 - Go Time - a podcast full of the latest go news and special guests [[https://changelog.com/gotime][https://changelog.com/gotime]]
 - Go Forum - [[https://forum.golangbridge.org/][https://forum.golangbridge.org/]]
 - Gopher's Slack channel - [[https://invite.slack.golangbridge.org/][https://invite.slack.golangbridge.org/]]
@@ -114,6 +149,12 @@ Charlie Smith
 - [[https://golang.org/doc/#references][Go Documentation]]
 - [[http://www.goinggo.net/][Going Go - William Kennedy]]
 
+* Conference Videos
+- UK Go Conference - [[https://www.youtube.com/channel/UC9ZNrGdT2aAdrNbX78lbNlQ]]
+- GopherCon - [[https://www.youtube.com/channel/UCx9QVEApa5BKLw9r8cnOFEA]]
+- dotGo - [[https://www.youtube.com/channel/UCSRhwaM00ay0fasnsw6EXKA]]
+
 * Web Service task
 - Update you're copy of the web service task [[https://github.com/chazsmi/webservicetask][https://github.com/chazsmi/webservicetask]]
 - Complete the tasks
+- Ask for help if you need it
