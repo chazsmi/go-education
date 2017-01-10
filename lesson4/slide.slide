@@ -51,7 +51,7 @@ Charlie Smith
 - The Atomic package docs can be found [[https://golang.org/pkg/sync/atomic/][here]]
 
 * Mutex exercise 
-- go get [[https://github.com/chazsmi/mutex-excercise][https://github.com/chazsmi/mutex-excercise]]
+- go get [[https://github.com/chazsmi/mutex-excercise][github.com/chazsmi/mutex-excercise]]
 - Complete the tasks in readme
 
 * Deployment
@@ -63,7 +63,7 @@ Charlie Smith
 * Install an environment on the machine
 - Run your program like you do locally.
 - You will need to install go, set up your GOPATH and build your binary on each new machine
-- This has the disadvantage of machines taking longer to be built and needing to write more code to build these machines with tools such as Ansible terraform.
+- This has the disadvantage of machines taking longer to be built and needing to write more code to build these machines with tools such as Ansible and Terraform.
 
 * Go gives us another way....
 
@@ -78,6 +78,8 @@ Charlie Smith
 .code code/run
 
 * Understanding nil
+
+* Important facts about nil
 - Nil is useful and important in Go
 - nil is not null - Go doesn't support null
 - Nil is a kind of zero
