@@ -40,7 +40,6 @@ The main purpose of the course is to jump start developers into learning Go with
 - TASK web service
 
 ## Lesson 5 
-- Understanding nil
 - Avoiding allocations and using memory
 - Profiling
 
