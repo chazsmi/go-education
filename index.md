@@ -33,12 +33,10 @@ The main purpose of the course is to jump start developers into learning Go with
 
 ## Lesson 4
 - Mutexs
-- io.Reader
+- TASK - Mutex excercise
+- Go in production
+- Understanding nil
 - The Go Community
-- Deployment
-- TASK deployment
-- Package organistion
-- TASK package organistion
 - TASK web service
 
 ## Lesson 5 
