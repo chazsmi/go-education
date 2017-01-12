@@ -43,7 +43,7 @@ func main() {
 				r1 := rand.New(s1)
 				key := r1.Intn(2)
 				cache.Set(key, "charlie")
-				fmt.Printf("I added to %d! \n", cache.Number[key])
+				fmt.Printf("I added to %d! \n", cache.Get(key))
 				time.Sleep(time.Duration(1 * time.Millisecond))
 			}
 		}(ca)
