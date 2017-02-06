@@ -3,6 +3,9 @@
 This is a range of Go education materials I'm using to teach beginner level Go.
 See also [https://chazsmi.github.io/go-education/](https://chazsmi.github.io/go-education/)
 
+## Lesson 5
+- Decorator Pattern [https://github.com/chazsmi/decorator-pattern/](https://github.com/chazsmi/decorator-pattern/)
+
 ## Lesson 4
 - Mutex Excerise [https://github.com/chazsmi/mutex-excercise](https://github.com/chazsmi/mutex-excercise)
 - Web Service [https://github.com/chazsmi/webservicetask](https://github.com/chazsmi/webservicetask)
