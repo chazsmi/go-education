@@ -39,13 +39,17 @@ The main purpose of the course is to jump start developers into learning Go with
 - The Go Community
 - TASK web service
 
-## Lesson 5 
+## Lesson 5
+- Laying out you're Go app
+- Design patterns in Go
+
+## Lesson 6
 - Avoiding allocations and using memory
 - Profiling
 
-## Lesson 6
+## Lesson 7
 - Recap lesson content submmitted by students
 
-## Lesson 7 +
+## Lesson 8 +
 - Standard library packages 1-2 per week
  
