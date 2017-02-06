@@ -1,0 +1,92 @@
+Go Education
+Lesson 5
+
+Charlie Smith
+
+* Review of web service solutions
+
+* What we are covering today
+- Laying out you're Go app
+- Design patterns in Go
+- Web service task
+
+* Layout of a Go app
+- Common question whens starting with Go is how do a layout my application
+- There is no hard and fast rules for this
+
+* Layout of Go app
+- But generally you want to organise your code logically into packages and seperate them in you're repo
+- I generally like to keep my main package very light on code, if possible just the main function itself.
+- This is a seperation of concerns like in any other language
+
+* Design Patterns
+
+* Object Orientation in Go
+- Go doesnt fit your typical OOP model
+- It has no concept of inheritance (this is by design..)
+- It does provide some of the same features you get in tradional OOP lanauages but in a slightly different way
+
+* OOP features
+- For namespaces think packages
+.code code/oop.go /START PACKAGE OMIT/,/END PACKAGE OMIT/
+- For objects think types
+.code code/oop.go /START TYPES OMIT/,/END TYPES OMIT/
+
+* OOP continued...
+- Methods...
+.code code/oop.go /START METHODS OMIT/,/END METHODS OMIT/
+- eg..
+.code code/oop.go /START EG OMIT/,/END EG OMIT/
+
+* The Decorator Pattern
+- Think of it like an onion...
+- A core with lots of layers
+
+* Decorator Pattern continued...
+- Single responsiblity princple
+- Software entities should have a single responsiblity
+- Seperation of concerns
+
+* Decorator Pattern continued...
+- Interfaces allow us to do this
+- Remember when we talked about small interfaces 
+- They enable the interface intergration princple
+- Whats that?
+
+* Decorator Pattern continued...
+- Client code should not rely on methods it does not use
+- Large interfaces are tough to satisfy
+- Clients also may have access to functionality they shouldn't
+
+* Decorator Pattern continued...
+- It also allows us to easily align to the open close princple 
+- Software entities should be open to extentsion but closed to modification
+
+* So what does this look like
+- A very common use case for using the decorator pattern is in http middleware
+- With http requests we hvae common concerns such as auth, logging, client side load balancing, fault tolerance
+- An example of a http request, adding an auth token to the request
+.code code/decorator.go /START OMIT/,/END OMIT/
+
+* Lets look at what makes this code up
+- Starting with the decorator method itself that we saw in the previous slide
+.code code/decorator2.go /START OMIT/,/END OMIT/
+
+* The Client Inferface
+- Here we create the client interface and a type thats a func taking our a http.Resquest and returning http.Reponse
+.code code/decorator2.go /START CLIENT OMIT/,/END CLIENT OMIT/
+
+* Decorator functions
+- We can then make functions that return the decorator type
+.code code/decorator2.go /START LOGGER OMIT/,/END LOGGER OMIT/
+
+* Decorator Task
+- Clone or fork this repo [[https://github.com/chazsmi/decorator-pattern/]]
+- Add another decorater function wich allows the caller to add an auth token to http request
+
+* Further reading
+- One of the best Go talk I have seen and explains the decorator pattern [[https://www.youtube.com/watch?v=xyDkyFjzFVc]]
+- A post from Matt Ryer on middleware in Go and how to use this pattern. [[https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81#.glbiyefw2]]
+
+* Further reading on design tradtional design patterns in Go
+- Svetlin Ralchev's blog, talks about the gang of four design patterns in Go [[http://blog.ralch.com/tutorial/design-patterns/golang-design-patterns/]]
