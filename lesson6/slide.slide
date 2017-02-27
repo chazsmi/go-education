@@ -1,0 +1,123 @@
+Go Education
+Lesson 6
+
+Charlie Smith
+
+* Review of web service solutions
+
+* What we are covering today
+- Go profiling tools
+- Reducing allocations in Go
+- Web service task
+
+* Profiling your Go programmes
+- Profiling is an invaluable tool for debugging even the most complex of programs
+- Fortunately as usual the Go team have done some amazing stuff in the standard lib to enable you to do this pretty much out of the box
+- [[http://golang.org/pkg/runtime/pprof][runtime/pprof]] - allows you control over low level profiles
+- [[http://golang.org/pkg/net/http/pprof/][net/http/pprof]] - allows you to register http endpoints profiling live applications.
+- Dave Cheney has also done a wrapper package which makes things even more simple - [[http://github.com/pkg/profile]]
+
+* Profiling your Go programs
+- So to explain how to profile we need an application to profile
+- Here is one I made earlier, it gives you random food selections per an http request
+- Take a minute to familiarise yourself with the program [[https://github.com/chazsmi/profiling-example]]
+
+* Lets get profiling!
+- We have included "net/http/pprof" in the import statement so that exposes some endpoints for us to get metrics
+- Because our program already has a web server we don't need to add one
+- There are 3 standard things you can profile using pprof. There is a Memory, CPU and Go routine blocking profiles
+- Memory profile (http://localhost:8080/debug/pprof/heap)
+- CPU profile (http://localhost:8080/debug/pprof/profile)
+- Goroutine blocking profile (http://localhost:8080/debug/pprof/block)
+
+* The heap profile 
+- Listing whats on the heap
+- This useful for finding memory leaks 
+- Identifying allocations
+
+* Lets see it in action
+- First we need to run our small program
+.code code/commands.sh /START THIRD OMIT/,/END THIRD OMIT/
+- followed by
+.code code/commands.sh /START FOURTH OMIT/,/END FOURTH OMIT/
+
+* Continued...
+- You will then see this output 
+.image images/heap.png
+- As you can see you get pprof command prompt which allows you to run lots of different commands to query the metrics. In the example above I have run top, which outputs the tops users of memory
+
+* The CPU profile
+- Helps you find performance bottle necks in your application
+- Run in the same way as the heap
+.code code/commands.sh /START FIFTH OMIT/,/END FIFTH OMIT/
+- When you run that command pprof will wait 30 seconds while it captures information about your program. So in that time we send some requests to our program
+ So in that time we send some requests to our program
+.code code/commands.sh /START SIXTH OMIT/,/END SIXTH OMIT/
+
+* CPU continued...
+- Then if you run top
+.image images/cpu.png
+
+* Extra Commands
+- You can also use the prof tool to visualise the program profile in an image or pdf formats.
+.code code/commands.sh /START SEVENTH OMIT/,/END SEVENTH OMIT/
+- On top of this you can also make your own profiles for your programs using proto files
+
+* Reducing Allocations
+
+* What are allocations?
+- When we say allocations we mean allocating things to memory
+- Decreasing allocations generally sees an increase in performance
+- Understanding how you should write efficent Go is and important part of learning the language
+
+* A simple example
+- So lets a look at a simple example
+.code code/benchm.go /START OMIT/,/END OMIT/
+
+* Benchmarks
+- Writing benchmarks is an important part of understanding and testing the performance of your code
+- As we have seen in previous lessons writing benchmarks in Go is easy
+.code code/benchm_test.go /START OMIT/,/END OMIT/
+
+* Using benchmarks to identify allocations
+- Running a benchmark
+.image images/bench.png
+- Running the benchmarks with a stack trace that will show allocations
+.image images/bench2.png
+
+* Looking at the trace file
+- In the previous command we sent the output to a file, as the output is big.
+- If we search for the function name in the file we get the following 
+
+* The stack trace
+.image images/stack.png
+- We can see that and allocation occured, the file and line number
+
+* Finding the allocation in our code
+- So if we look back in at our programme we can find where the allocation occurred
+.code -numbers code/benchm.go /START OMIT/,/END OMIT/
+- If we look at the stack trace we can see that its line 6 that we have an allocation
+
+* So why is this?
+- Strings are immutable in Go
+- So when on line 7 and 8 when we concatenate to strings together we are in fact creating another new string in memory
+- This means concating strings like this, while it works, is inefficient
+
+* So lets refactor
+- First we want to benchmark the two versions, so we can do this with the [[https://godoc.org/golang.org/x/tools/cmd/benchcmp][benchcmp]] tool
+- Lets record the first version in a txt file
+.code code/commands.sh /START OMIT/,/END OMIT/
+
+* Refactor continued
+- Ok so lets refactor the code to remove the allocation
+.code code/benchm2.go /START OMIT/,/END OMIT/
+- We have are now using bytes and append which reduces the allocations
+
+* Retest the refactored code
+.code code/commands.sh /START SECOND OMIT/,/END SECOND OMIT/
+- If we compare our benchmarks we have reduced the number of allocations
+.image images/benchcompare.png
+
+* Webservice task
+- [[https://github.com/chazsmi/webservicetask]]
+- Checkout lesson 6 task

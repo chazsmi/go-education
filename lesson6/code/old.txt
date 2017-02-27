@@ -1,0 +1,3 @@
+BenchmarkAddTo-4   	10000000	       218 ns/op	     208 B/op	       3 allocs/op
+PASS
+ok  	github.com/chazsmi/go-education/lesson6/code	2.439s
