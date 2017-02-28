@@ -51,17 +51,20 @@ Charlie Smith
 - Run in the same way as the heap
 .code code/commands.sh /START FIFTH OMIT/,/END FIFTH OMIT/
 - When you run that command pprof will wait 30 seconds while it captures information about your program. So in that time we send some requests to our program
- So in that time we send some requests to our program
 .code code/commands.sh /START SIXTH OMIT/,/END SIXTH OMIT/
 
 * CPU continued...
-- Then if you run top
+- Then if you run top, you can see where most of the work is being done. The rand function in the case below.
 .image images/cpu.png
 
 * Extra Commands
-- You can also use the prof tool to visualise the program profile in an image or pdf formats.
+- You can also use the prof tool to visualise the program profile in an image or pdf formats. Note, you will need to install Graphviz for the below to work
 .code code/commands.sh /START SEVENTH OMIT/,/END SEVENTH OMIT/
 - On top of this you can also make your own profiles for your programs using proto files
+
+* Problems on OSX 
+- Due to the way the Kernel works on OSX, pprof sometimes has problems getting reliable metrics.
+- You can get around this by using Linux or a VM/container with linux. As most post local machine but pre prod environments are generally linux based this isnt normally a problem
 
 * Reducing Allocations
 
@@ -96,11 +99,11 @@ Charlie Smith
 * Finding the allocation in our code
 - So if we look back in at our programme we can find where the allocation occurred
 .code -numbers code/benchm.go /START OMIT/,/END OMIT/
-- If we look at the stack trace we can see that its line 6 that we have an allocation
+- If we look at the stack trace we can see that its line 8 that we have an allocation
 
 * So why is this?
 - Strings are immutable in Go
-- So when on line 7 and 8 when we concatenate to strings together we are in fact creating another new string in memory
+- So when on line 7 and 8 we concatenate to strings together we are in fact creating another new string in memory
 - This means concating strings like this, while it works, is inefficient
 
 * So lets refactor
